@@ -52,4 +52,16 @@ class VideoLibrary {
   Video getVideo(String videoId) {
     return this.videos.get(videoId);
   }
+
+  List<Video> getVideoMatches(String searchTerm){
+    List<Video> matches = new ArrayList<>();
+
+    for(Video v : videos.values()){
+      if(v.getTitle().toLowerCase().contains(searchTerm.toLowerCase())){
+        matches.add(v);
+      }
+    }
+    return matches;
+  }
+
 }
