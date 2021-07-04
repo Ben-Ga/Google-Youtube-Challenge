@@ -9,11 +9,15 @@ class Video {
   private final String title;
   private final String videoId;
   private final List<String> tags;
+  private boolean flagged;
+  private String flagReason;
 
   Video(String title, String videoId, List<String> tags) {
     this.title = title;
     this.videoId = videoId;
     this.tags = Collections.unmodifiableList(tags);
+    this.flagged = false;
+    this.flagReason = "Not supplied";
   }
 
   /** Returns the title of the video. */
@@ -30,4 +34,12 @@ class Video {
   List<String> getTags() {
     return tags;
   }
+
+  boolean isFlagged() {return flagged;}
+
+  String getFlagReason() {return flagReason;}
+
+  public void setFlagged(boolean status) {flagged = status;}
+
+  public void setFlagReason(String reason) {flagReason = reason;}
 }

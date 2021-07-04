@@ -57,8 +57,20 @@ class VideoLibrary {
     List<Video> matches = new ArrayList<>();
 
     for(Video v : videos.values()){
-      if(v.getTitle().toLowerCase().contains(searchTerm.toLowerCase())){
-        matches.add(v);
+      if(!v.isFlagged()) {
+        if (searchTerm.charAt(0) == '#') {
+          //Search by tag
+          for (String tag : v.getTags()) {
+            if (tag.substring(1).toLowerCase().equals(searchTerm.substring(1).toLowerCase())) {
+              matches.add(v);
+            }
+          }
+
+        } else {
+          if (v.getTitle().toLowerCase().contains(searchTerm.toLowerCase())) {
+            matches.add(v);
+          }
+        }
       }
     }
     return matches;
